@@ -29,3 +29,36 @@ let k = [
 let answer = hourglassSum(k)
 console.log(answer)
 
+
+//challenge 2 dynamic array
+
+function dynamicArray(n, queries) {
+    // Write your code here
+    let lastAnswer = 0
+    let output = []
+    let seqList = []
+    for (let i = 0; i < n; i++) {
+        seqList.push([])
+
+    }
+    
+    for (let subQuery of queries) {
+        
+            if (subQuery[0] === 1) {
+                let temp = (subQuery[1] ^ lastAnswer) % seqList.length
+               
+                seqList[temp].push(subQuery[2])
+            }
+            else if (subQuery[0] === 2) {
+                let seq = seqList[(subQuery[1] ^ lastAnswer) % seqList.length]
+                let value = seq[(subQuery[2] % seq.length)]
+                console.log("seq",seq)
+                lastAnswer = value
+                output.push(lastAnswer)
+                console.log(subQuery)
+            
+            }
+
+    }
+    console.log(output)
+    return output}
