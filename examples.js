@@ -62,3 +62,24 @@ function dynamicArray(n, queries) {
     }
     console.log(output)
     return output}
+
+
+    //sparse arrays
+
+    function matchingStrings(strings, queries) {
+        let output = []
+        for (let i = 0; i < queries.length; i++){
+            output.push(0)
+        }
+    
+        for (let i = 0; i < queries.length; i++){
+            for (let j = 0; j < strings.length; j++){
+                if (strings[j] === queries[i]) {
+                    output[i]++
+                }
+            }
+        }
+    
+        return output
+    
+    }
