@@ -185,3 +185,42 @@ function insertNodeAtHead(head, data) {
     return head
 
 }
+
+//Insert at position in SLL
+
+function insertNodeAtPosition(head, data, position) {
+    let counter = 0
+    let current = head
+    //lets end at the position before our insertion point
+    while (counter < position -1) {
+        current = current.next
+        counter ++
+    }
+    //save temp of current node in desired position
+    let tempNext = current.next
+    //update position with new data node
+    current.next = new SinglyLinkedListNode(data)
+    //update new data node with tempNext
+    current.next.next = tempNext
+
+    return head
+}
+
+
+//SLL reversed
+
+function reversePrint(head) {
+    let stack = []
+    let current = head
+    //push head node to stack first
+    stack.push(current)
+    while (current.next) {
+        stack.push(current.next)
+        current = current.next
+    }
+    while (stack.length > 0) {
+        let printItem = stack.pop()
+        console.log(printItem.data)
+    }
+
+}
