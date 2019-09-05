@@ -381,4 +381,45 @@ function findMergeNode(headA, headB) {
     
 }
 
+//find merge node SLL using STACKS
+function findMergeNode(headA, headB) {
+    let currentA = headA
+    let currentB = headB
+    let stackA = []
+    let stackB = []
+
+    stackA.push(currentA)
+    while (currentA.next) {
+        stackA.push(currentA.next)
+        currentA = currentA.next
+        
+        //usually ++A vs A++ former means increment and use new value latter means increment but use previous value
+    }
+    stackB.push(currentB)
+    while (currentB.next) {
+        stackB.push(currentB.next)
+        currentB = currentB.next
+    }
+    
+    //greater than or equal was necessary if one list begins with the merge point
+    while (stackA.length >= 0 && stackB.length >= 0) {
+        let poppedA = stackA.pop()
+        let poppedB = stackB.pop()
+        var temp
+        console.log(poppedA)
+        console.log(poppedB)
+       
+        if (poppedA !== poppedB) {
+            return temp.data
+        }
+        
+        temp = poppedA
+        
+       
+        
+       
+    }
+   
+}
 ///look up loop identification
+
