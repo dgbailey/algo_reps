@@ -83,3 +83,87 @@ function dynamicArray(n, queries) {
         return output
     
     }
+
+    //array manipulation hard
+
+    'use strict';
+
+const fs = require('fs');
+
+process.stdin.resume();
+process.stdin.setEncoding('utf-8');
+
+let inputString = '';
+let currentLine = 0;
+
+process.stdin.on('data', inputStdin => {
+    inputString += inputStdin;
+});
+
+process.stdin.on('end', _ => {
+    inputString = inputString.replace(/\s*$/, '')
+        .split('\n')
+        .map(str => str.replace(/\s*$/, ''));
+
+    main();
+});
+
+function readLine() {
+    return inputString[currentLine++];
+}
+
+// Complete the arrayManipulation function below.
+//never fully solved
+function arrayManipulation(n, queries) {
+    let finalArr = []
+    for (let i = 0; i < n; i++) {
+        finalArr.push(0)
+    }
+    console.log(finalArr)
+    for (let query of queries) {
+        let insertValue = query[2]
+        let start = query[0] -1 < 0 ? 0:query[0] -1
+        let finish = query[1] -1 === 1 ? 1:query[1] -1
+        
+        let newArr = finalArr.slice(start,finish +1).map(value => 
+            
+            value + insertValue
+        )
+
+        finalArr.splice(start, newArr.length, ...newArr)
+        
+        
+            
+            
+        
+    
+        console.log('final',finalArr)
+       
+        
+    }
+
+
+    return Math.max(...finalArr)
+}
+
+//add node to LL in JS
+
+function insertNodeAtTail(head, data) {
+    
+
+    if (!head) {
+        head = new SinglyLinkedListNode(data)
+        
+    }
+    else {
+        //important to distinguish between an actual node in LL and just plain null current = head vs current = head.next
+        let current = head
+        while (current.next) {
+            current = current.next
+        }
+        current.next = new SinglyLinkedListNode(data)
+        
+    }
+    
+    
+    return head}
