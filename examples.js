@@ -167,3 +167,21 @@ function insertNodeAtTail(head, data) {
     
     
     return head}
+
+
+//insert new head on SLL
+
+function insertNodeAtHead(head, data) {
+    if (!head) {
+        head = new SinglyLinkedListNode(data)
+    }
+    else {
+        let current = head
+        let newHead = new SinglyLinkedListNode(data)
+        newHead.next = current
+        return newHead
+    }
+
+    return head
+
+}
