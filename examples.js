@@ -260,3 +260,34 @@ function CompareLists(llist1, llist2) {
     
 
 }
+
+
+//merge SLL
+
+function mergeLists(head1, head2) {
+    
+    let newListHead = new SinglyLinkedListNode(-1)
+    let tempHead = newListHead
+
+    //you are motifying a property on newListHead so the referenced object is actually changing
+
+    while (head1 && head2) {
+        if (head1.data > head2.data) {
+            tempHead.next = head2
+            head2 = head2.next
+        }
+        else {
+            tempHead.next = head1
+            head1 = head1.next
+            
+        }
+        tempHead = tempHead.next
+    }
+
+    tempHead.next = head1 || head2
+    return newListHead.next
+
+    
+
+
+}
