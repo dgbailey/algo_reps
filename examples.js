@@ -224,3 +224,39 @@ function reversePrint(head) {
     }
 
 }
+
+//compare SLL
+function CompareLists(llist1, llist2) {
+    let q1 = []
+    let q2 = []
+    let current1 = llist1
+    let current2 = llist2
+
+    q1.push(current1.data)
+    q2.push(current2.data)
+    while (current1.next) {
+        q1.push(current1.next.data)
+        current1 = current1.next
+    }
+    console.log('currrent1',q1)
+  
+    while (current2.next) {
+        q2.push(current2.next.data)
+        current2 = current2.next
+    }
+    console.log('currrent2', q2)
+    if (q1.length !== q2.length) {
+        return 0
+    }
+    else {
+        for (let i = 0; i < q1.length; i++){
+            if (q1[i] !== q2[i]) {
+                return 0
+            }
+        }
+        return 1
+    }
+
+    
+
+}
