@@ -291,3 +291,94 @@ function mergeLists(head1, head2) {
 
 
 }
+
+//get data based on position from tail
+function getNode(head, positionFromTail) {
+    let reversedOrderStack = []
+    let current = head
+    console.log(current)
+    //don't forget to add head first
+    reversedOrderStack.unshift(current.data)
+    while (current.next) {
+        reversedOrderStack.unshift(current.next.data)
+        current = current.next
+       
+    }
+    let value = reversedOrderStack[positionFromTail]
+    return value
+
+}
+
+//remove duplicates
+
+function removeDuplicates(head) {
+
+    //cycle through linked list
+    let current = head
+    while (current.next) {
+        if (current.data === current.next.data) {
+            current.next = current.next.next
+        }
+        else {
+            current = current.next
+        }
+    }
+    return head
+}
+
+
+//potential cycle identifier
+
+function hasCycle(head) {
+    //and SLL without a cycle will return null eventually
+        let current = head
+        while (current.next) {
+            if (current.id === current.next.next.id) {
+                return true
+            }
+        }
+        return false
+    
+    }
+
+
+//find merger of two linked lists
+
+function findMergeNode(headA, headB) {
+    let currentA = headA
+    let currentB = headB
+    let countA = 1
+    let countB = 1
+
+    while (currentA.next) {
+        currentA = currentA.next
+        countA++
+        //usually ++A vs A++ former means increment and use new value latter means increment but use previous value
+    }
+    console.log(countA)
+    while (currentB.next) {
+        currentB = currentB.next
+        countB++
+    }
+    
+
+    let longest = countA >= countB ? headA : headB
+    let comparison = longest === headA ? headB:headA
+    let diff = (Math.abs(countA - countB)) === 0 ? 0 : (Math.abs(countA - countB))
+    
+    while (diff > 0) {
+        longest = longest.next
+        diff--
+    }
+    //wasn't comparing the first two links once fast forwarded
+    while (longest && comparison) {
+        if (longest === comparison) {
+            return longest.data
+        }
+        longest = longest.next
+        comparison = comparison.next
+    }
+    
+}
+
+///look up loop identification
