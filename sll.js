@@ -325,3 +325,25 @@ function sortedInsert(head, data) {
 
     
 }
+
+//reverse DLL using nodes as helpers
+
+function reverse(head) {
+    let stack = []
+    let current = head
+    stack.push(current)
+    while (current.next) {
+        stack.push(current.next)
+        current = current.next
+    }
+    //set null values of new head and tail last
+    let freshlyPopped = stack.pop()
+    let ref = freshlyPopped
+    while (current) {
+  
+        freshlyPopped.next = freshlyPopped.prev
+        freshlyPopped.prev = current.next
+        freshlyPopped = stack.pop()
+        current = current.prev
+    }
+    return ref}
