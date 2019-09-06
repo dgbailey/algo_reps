@@ -162,7 +162,7 @@ function getNode(head, positionFromTail) {
 }
 
 //remove duplicates
-
+//this does not work if duplicates aren't sequential
 function removeDuplicates(head) {
 
     //cycle through linked list
