@@ -274,3 +274,54 @@ function findMergeNode(headA, headB) {
    
 }
 ///look up loop identification
+
+
+
+//INsert into sorted linked list
+function sortedInsert(head, data) {
+    let current = head
+    let stack = []
+   
+    while (current) {
+        
+        stack.push(current)
+        current = current.next
+    }
+    //check head
+    let stackHead = stack[0]
+    let stackTail = stack[stack.length -1]
+  
+    if (stackHead.data >= data) {
+        let newNode = new DoublyLinkedListNode(data)
+        newNode.next = stackHead
+        newNode.prev = null
+        stackHead.prev = newNode
+        
+        return newNode
+    }
+    //checkTail
+    else if (stackTail.data <= data) {
+        let newNode = new DoublyLinkedListNode(data)
+        newNode.next = null
+        newNode.prev = stackTail
+        stackTail.next = newNode
+        return head
+    }
+    else {
+        for (let i = 0; i < stack.length; i++){
+            if (stack[i].data > data) {
+                console.log('stackgreater',stack[i])
+                let newNode = new DoublyLinkedListNode(data)
+                newNode.next = stack[i]
+                newNode.prev = stack[i].prev
+                stack[i].prev.next = newNode
+                stack[i].prev = newNode
+                
+                return head
+            }
+        }
+    }
+
+
+    
+}
