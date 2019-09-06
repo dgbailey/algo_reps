@@ -146,42 +146,5 @@ function arrayManipulation(n, queries) {
     return Math.max(...finalArr)
 }
 
-//add node to LL in JS
-
-function insertNodeAtTail(head, data) {
-    
-
-    if (!head) {
-        head = new SinglyLinkedListNode(data)
-        
-    }
-    else {
-        //important to distinguish between an actual node in LL and just plain null current = head vs current = head.next
-        let current = head
-        while (current.next) {
-            current = current.next
-        }
-        current.next = new SinglyLinkedListNode(data)
-        
-    }
-    
-    
-    return head}
 
 
-//insert new head on SLL
-
-function insertNodeAtHead(head, data) {
-    if (!head) {
-        head = new SinglyLinkedListNode(data)
-    }
-    else {
-        let current = head
-        let newHead = new SinglyLinkedListNode(data)
-        newHead.next = current
-        return newHead
-    }
-
-    return head
-
-}
