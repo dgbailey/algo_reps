@@ -274,3 +274,103 @@ function findMergeNode(headA, headB) {
    
 }
 ///look up loop identification
+
+
+
+//INsert into sorted linked list
+function sortedInsert(head, data) {
+    let current = head
+    let stack = []
+   
+    while (current) {
+        
+        stack.push(current)
+        current = current.next
+    }
+    //check head
+    let stackHead = stack[0]
+    let stackTail = stack[stack.length -1]
+  
+    if (stackHead.data >= data) {
+        let newNode = new DoublyLinkedListNode(data)
+        newNode.next = stackHead
+        newNode.prev = null
+        stackHead.prev = newNode
+        
+        return newNode
+    }
+    //checkTail
+    else if (stackTail.data <= data) {
+        let newNode = new DoublyLinkedListNode(data)
+        newNode.next = null
+        newNode.prev = stackTail
+        stackTail.next = newNode
+        return head
+    }
+    else {
+        for (let i = 0; i < stack.length; i++){
+            if (stack[i].data > data) {
+                console.log('stackgreater',stack[i])
+                let newNode = new DoublyLinkedListNode(data)
+                newNode.next = stack[i]
+                newNode.prev = stack[i].prev
+                stack[i].prev.next = newNode
+                stack[i].prev = newNode
+                
+                return head
+            }
+        }
+    }
+
+
+    
+}
+
+//reverse DLL using nodes as helpers
+
+function reverse(head) {
+    let stack = []
+    let current = head
+    stack.push(current)
+    while (current.next) {
+        stack.push(current.next)
+        current = current.next
+    }
+   
+    let freshlyPopped = stack.pop()
+    let ref = freshlyPopped
+    while (current) {
+  
+        freshlyPopped.next = freshlyPopped.prev
+        freshlyPopped.prev = current.next
+        freshlyPopped = stack.pop()
+        current = current.prev
+    }
+    return ref}
+
+    //delete a node SLL
+
+    //a = [1,2,3,4,4]
+function deleteNode(head, position) {
+    let current = head
+    let stack = []
+ 
+    stack.push(current)
+    while (current.next) {
+        stack.push(current.next)
+        current = current.next
+    }
+    if (position === 0) {
+        stack[position].next = null
+        return stack[1]
+    }
+    else if (position === stack.length) {
+        stack[stack.length -1].next = null
+       return head
+    }
+    else {
+        stack[position -1].next = stack[position + 1]
+        return head
+    }
+
+}
