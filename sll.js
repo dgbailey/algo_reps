@@ -336,7 +336,7 @@ function reverse(head) {
         stack.push(current.next)
         current = current.next
     }
-    //set null values of new head and tail last
+   
     let freshlyPopped = stack.pop()
     let ref = freshlyPopped
     while (current) {
@@ -347,3 +347,30 @@ function reverse(head) {
         current = current.prev
     }
     return ref}
+
+    //delete a node SLL
+
+    //a = [1,2,3,4,4]
+function deleteNode(head, position) {
+    let current = head
+    let stack = []
+ 
+    stack.push(current)
+    while (current.next) {
+        stack.push(current.next)
+        current = current.next
+    }
+    if (position === 0) {
+        stack[position].next = null
+        return stack[1]
+    }
+    else if (position === stack.length) {
+        stack[stack.length -1].next = null
+       return head
+    }
+    else {
+        stack[position -1].next = stack[position + 1]
+        return head
+    }
+
+}
