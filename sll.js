@@ -374,3 +374,22 @@ function deleteNode(head, position) {
     }
 
 }
+
+//cycle detection LL python
+// def has_cycle(head):
+    
+//     tort = head
+//     hare = head.next
+    
+//     while tort and hare:
+//         if tort == hare:
+//             return 1
+        
+//         tort = tort.next
+//         hare = hare.next
+        
+//     return 0
+
+//matched brackets
+//original string '[{(}]'
+
