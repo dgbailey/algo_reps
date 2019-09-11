@@ -163,6 +163,7 @@ function getNode(head, positionFromTail) {
 
 //remove duplicates
 //this does not work if duplicates aren't sequential
+//list being sorted is important here
 function removeDuplicates(head) {
 
     //cycle through linked list
@@ -502,3 +503,33 @@ function sort(stack){
 // let b = pushToStack(a)
 // let c = merge(sort(b))
 
+//equal stacks
+//quadratic need to improve
+function equalStacks(h1, h2, h3) {
+    /*
+     * Write your code here.
+     */
+    
+    if (h1.length === 0 ||h2.length === 0|| h3.length ===0){
+        return 0
+    }
+    
+    let hashmap = {}
+    let sumA = h1.reduce((a,b)=> a+b)
+    hashmap[sumA] = h1
+    let sumB = h2.reduce((a,b)=> a+b)
+     hashmap[sumB] = h2
+    let sumC = h3.reduce((a,b)=> a+b)
+     hashmap[sumC] = h3
+    if(sumA === sumB && sumB === sumC){
+        return sumA}
+    
+    let firstComparison = sumA > sumB ? sumA:sumB
+    let currentMax = sumC > firstComparison ? sumC:firstComparison
+    hashmap[currentMax].shift()
+
+    console.log(h1,h2,h3)
+    return equalStacks(h1,h2,h3)
+   
+
+}
