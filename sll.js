@@ -392,4 +392,113 @@ function deleteNode(head, position) {
 
 //matched brackets
 //original string '[{(}]'
+class LinkedList{
+    constructor(link){
+        this.head = link
+        
+    }
+}
+
+class Link{
+    constructor(data){
+        this.next = null
+        this.data = data
+    }
+}
+
+function listGen(length){
+    let firstLink = new Link(5)
+    let myLinkedlist = new LinkedList(firstLink)
+    let current = myLinkedlist.head
+
+    for(i = 0; i < length; i++){
+        let r = Math.floor(Math.random()*10)
+        let newLink = new Link(r)
+        current.next = newLink
+        current = current.next
+        
+    }
+    return myLinkedlist
+
+
+}
+
+
+
+
+
+//sorting a linked list
+//implement a stack (feed in linked list)
+//hashmap with values as keys and nodes as values
+//hashmap does present a problem with collisions
+//using objects insead of integer data to avoid this
+//objects doesn't avoid this
+
+//sorting a linked list by first reading into a stack O(n), then qsorting the stack O(nlogn), then O(n) to run through sorted items and switch links
+
+let a = listGen(9)
+console.log("LinkedList",a)
+function merge(sortedLL){
+        current = sortedLL[0]
+        for(let i = 0;i < sortedLL.length;i++){
+            if (sortedLL[i +1]){
+                current.next = sortedLL[i +1]
+                
+            }
+            else{
+                current.next = null
+               
+            }
+             current = current.next
+        }
+        return sortedLL[0]
+        
+}
+
+function pushToStack(ll){
+    let stack = []
+    let current = ll.head
+    while(current){
+        stack.push(current)
+        current = current.next
+
+   
+    }
+    return stack
+}
+
+function sort(stack){
+ 
+    let left = []
+    let right = []
+    let equal = []
+    let partition = stack[Math.floor(stack.length/2)]
+    if(stack.length <=1){
+        return stack
+    }
+    
+    for(let link of stack){
+        if(link.data > partition.data){
+            right.push(link)
+        }
+        else if(link.data < partition.data){
+            left.push(link)
+        }
+        else{
+            equal.push(link)
+        }
+       
+    }
+
+    return sort(left).concat(equal,sort(right))
+
+
+
+
+
+
+}
+
+// let b = pushToStack(a)
+// let c = merge(sort(b))
 
