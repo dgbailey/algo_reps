@@ -505,6 +505,7 @@ function sort(stack){
 
 //equal stacks
 //quadratic need to improve
+//determined that both recursive and non recursive solutions are not sufficient with the current logic, wasn't missing a base case
 function equalStacks(h1, h2, h3) {
     /*
      * Write your code here.
@@ -533,3 +534,44 @@ function equalStacks(h1, h2, h3) {
    
 
 }
+
+
+///leet  Two Sum (n^2 to ~n)
+
+var twoSum = function(nums, target) {
+    let hashMap = {}
+    nums.forEach((number,index) => hashMap[target - number]= index)
+    console.log(hashMap)
+    
+    for (i = 0; i <nums.length; i++){
+        
+        if(nums[i] in hashMap){
+            
+            if(hashMap[nums[i]] !== i){
+            return [i,hashMap[nums[i]]]
+        }
+    }
+    }
+};
+
+//stock trading max profit
+//O(n) time O(1) space
+
+var maxProfit = function(prices) {
+    let min = prices[0]
+    let profit = 0
+    for(i = 0; i < prices.length; i++){
+        let price = prices[i]
+        let next = prices[i +1]
+        if(min < next){
+            
+            if(next - min > profit){
+                profit = next - min
+            }
+        }
+        else{
+            min = next
+        }
+    }
+    return profit
+};
