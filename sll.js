@@ -665,3 +665,33 @@ var productExceptSelf = function(nums) {
     
     
     }
+
+    //max sub array
+    var maxSubArray = function(nums) {
+        let max = 0
+        let currentMax = 0
+     
+        
+        for(let i = 0; i < nums.length; i++){
+            if(nums[i] + currentMax > 0){
+                currentMax = nums[i] + currentMax
+                
+                if(currentMax > max ){
+                    max = currentMax
+                    
+                    
+                }
+               
+            }
+                
+            else{
+                currentMax = 0
+            }
+        }
+        if (max === 0){
+            return Math.max(...nums)
+        }
+        return max  
+        
+        
+    };
