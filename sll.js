@@ -630,3 +630,38 @@ var productExceptSelf = function(nums) {
         
       
   }
+       return output}
+  
+       //more acceptable 0(n) for L & R product lists same question as directly above
+       var productExceptSelf = function(nums) {
+        let position = 0
+        let length = nums.length
+        let output = []
+        
+       
+            //left product
+        let leftp = []
+        leftp[0] = 1
+        for(i = 1;i < length; i++){
+            leftp[i] = leftp[i - 1] * nums[i -1]
+        }
+        console.log(leftp)
+        
+        //right product
+        let rightp = []
+        rightp[length -1] = 1
+        for(i = length -1;i > 0; i--){
+            rightp[i -1] = rightp[i] * nums[i]
+        }
+        console.log(rightp)
+        
+        for(i = 0;i < length; i++){
+            output[i] = leftp[i] * rightp[i]
+        }
+        
+        return output
+        
+    
+    
+    
+    }
