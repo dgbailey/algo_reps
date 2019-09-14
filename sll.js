@@ -695,3 +695,63 @@ var productExceptSelf = function(nums) {
         
         
     };
+
+    var maxProduct = function(nums) {
+        let out = []
+        out.push(nums[0])
+    
+        //find me the greatest positive product otherwise return max of negative ints
+        //edge1
+        if(nums.length === 1){
+            return out[0]
+        }
+         if(nums.length === 2){
+            return nums[0] > nums[1] ? nums[0]:nums[1]
+        }
+        
+        
+        
+        for(let i = 1;i <= out.length; i++){
+            let max = out[out.length -1]
+            //length 1 or greater
+            //largest contig product
+            let currentNumber = nums[i]
+            let attempt = max*currentNumber
+             
+            //compare and replace if new max
+            if (max <= attempt){
+                
+             
+               
+                out.pop()
+                out.push(attempt)
+                
+            }
+            else{
+               
+                out.push(attempt)
+           
+            }
+            
+            
+        }
+       
+        return Math.max(...out)
+    };
+
+    //a= [-1,2,3]
+   //suitable solution to largest contig product
+   var maxProduct = function(nums) {
+    let previousMaxProduct = nums[0]
+    let previousMinProduct = nums[0]
+    let answer = nums[0]
+    
+    for (i = 1; i< nums.length; i++){
+        let currentMaxProduct = Math.max(previousMaxProduct*nums[i],previousMinProduct*nums[i],nums[i])
+        let currentMinProduct = Math.min(previousMaxProduct*nums[i],previousMinProduct*nums[i],nums[i])
+        previousMaxProduct = currentMaxProduct
+        previousMinProduct = currentMinProduct
+        answer = answer > previousMaxProduct ? answer:previousMaxProduct
+    }
+    return answer
+};
