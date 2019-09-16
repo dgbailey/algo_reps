@@ -575,3 +575,183 @@ var maxProfit = function(prices) {
     }
     return profit
 };
+
+// Contains dups leet
+
+//two solutions with similar time complexity characteristics
+
+var containsDuplicate = function(nums) {
+//     let sorted = nums.sort((a,b)=> a-b)
+//     for(i = 0;i<sorted.length -1;i++){
+//         if (sorted[i] === sorted[i + 1]){
+//             return true
+//         }
+//     }
+// return false
+    let hashMap = {}
+    for(let item of nums){
+        hashMap[item] = item
+    }
+
+    if(Object.keys(hashMap).length < nums.length){
+        return true
+    }
+
+    return false
+};
+//same dups problem with hashmap O(n) as opposed to O(nlog(n)) above
+
+var containsDuplicate = function(nums) {
+    hashMap = {}
+    // hashMap[nums[0]] = nums[0]
+    for(i = 0; i < nums.length; i++ ){
+        if(nums[i] in hashMap){
+            return true
+        }
+        else{
+            hashMap[nums[i]] = nums[i]
+        }
+    }
+    
+    return false
+};
+
+//unsatisfactory O(n^2) solution to leetcode Product of array except self
+var productExceptSelf = function(nums) {
+    let output = []
+    let stack1 = []
+    stack1.push(nums.shift())
+  for(i = 0;i < nums.length +1 ;i++){
+        output.push(nums.reduce((a,b) => a*b))
+    
+        nums.push(stack1.pop())
+        
+        stack1.push(nums.shift())
+        
+      
+  }
+       return output}
+  
+       //more acceptable 0(n) for L & R product lists same question as directly above
+       var productExceptSelf = function(nums) {
+        let position = 0
+        let length = nums.length
+        let output = []
+        
+       
+            //left product
+        let leftp = []
+        leftp[0] = 1
+        for(i = 1;i < length; i++){
+            leftp[i] = leftp[i - 1] * nums[i -1]
+        }
+        console.log(leftp)
+        
+        //right product
+        let rightp = []
+        rightp[length -1] = 1
+        for(i = length -1;i > 0; i--){
+            rightp[i -1] = rightp[i] * nums[i]
+        }
+        console.log(rightp)
+        
+        for(i = 0;i < length; i++){
+            output[i] = leftp[i] * rightp[i]
+        }
+        
+        return output
+        
+    
+    
+    
+    }
+
+    //max sub array
+    var maxSubArray = function(nums) {
+        let max = 0
+        let currentMax = 0
+     
+        
+        for(let i = 0; i < nums.length; i++){
+            if(nums[i] + currentMax > 0){
+                currentMax = nums[i] + currentMax
+                
+                if(currentMax > max ){
+                    max = currentMax
+                    
+                    
+                }
+               
+            }
+                
+            else{
+                currentMax = 0
+            }
+        }
+        if (max === 0){
+            return Math.max(...nums)
+        }
+        return max  
+        
+        
+    };
+
+    var maxProduct = function(nums) {
+        let out = []
+        out.push(nums[0])
+    
+        //find me the greatest positive product otherwise return max of negative ints
+        //edge1
+        if(nums.length === 1){
+            return out[0]
+        }
+         if(nums.length === 2){
+            return nums[0] > nums[1] ? nums[0]:nums[1]
+        }
+        
+        
+        
+        for(let i = 1;i <= out.length; i++){
+            let max = out[out.length -1]
+            //length 1 or greater
+            //largest contig product
+            let currentNumber = nums[i]
+            let attempt = max*currentNumber
+             
+            //compare and replace if new max
+            if (max <= attempt){
+                
+             
+               
+                out.pop()
+                out.push(attempt)
+                
+            }
+            else{
+               
+                out.push(attempt)
+           
+            }
+            
+            
+        }
+       
+        return Math.max(...out)
+    };
+
+    //a= [-1,2,3]
+   //suitable solution to largest contig product
+   var maxProduct = function(nums) {
+    let previousMaxProduct = nums[0]
+    let previousMinProduct = nums[0]
+    let answer = nums[0]
+    
+    for (i = 1; i< nums.length; i++){
+        let currentMaxProduct = Math.max(previousMaxProduct*nums[i],previousMinProduct*nums[i],nums[i])
+        let currentMinProduct = Math.min(previousMaxProduct*nums[i],previousMinProduct*nums[i],nums[i])
+        previousMaxProduct = currentMaxProduct
+        previousMinProduct = currentMinProduct
+        answer = answer > previousMaxProduct ? answer:previousMaxProduct
+    }
+    return answer
+};
