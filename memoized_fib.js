@@ -42,3 +42,26 @@ function factorial(n){
 }
 
 console.log(factorial(9))
+
+
+function nsteps(n,memo){
+    if(n === 1 || n === 0){
+        return 1
+    }
+
+    else if(n ===2){
+        return 2
+    }
+
+    else if(memo[n] !== undefined){
+        return memo[n]
+    }
+
+    if(memo[n] === undefined){
+        memo[n] = nsteps(n - 1,memo) + nsteps(n - 2, memo)+ nsteps(n -3,memo)
+    }
+
+    return memo[n]
+}
+
+console.log(nsteps(8,[]))
