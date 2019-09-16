@@ -10,7 +10,7 @@ function fib(n){
 
 // console.log(fib(10))
 
-
+//why would I include a caching object? 
 function memFib(n,mem){
 
    
@@ -32,4 +32,13 @@ function memFib(n,mem){
     
 }
 
-console.log("memFIB",memFib(100,[]))
+// console.log("memFIB",memFib(100,[]))
+
+function factorial(n){
+     if(n <= 1){
+         return n
+     }
+     return n * factorial(n -1)
+}
+
+console.log(factorial(9))
