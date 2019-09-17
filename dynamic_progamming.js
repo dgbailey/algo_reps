@@ -45,3 +45,29 @@ function nsteps(n,memo){
 
     return memo[n]
 }
+
+
+//longest increasing subsequence bottom up
+var lengthOfLIS = function(nums) {
+    
+    if(nums.length === 0){
+        return 0
+    }
+    let max = new Array(nums.length).fill(1)
+    
+
+    for (j = 1; j < nums.length; j++){
+      for(i= 0; i<j ; i++){
+          if(nums[j] > nums[i]){
+             console.log('yes')
+              console.log(nums[j],nums[i] )
+              max[j] = Math.max(max[i] +1,max[j])
+            
+          }
+              
+      }
+        
+       
+    }
+    console.log(max)
+    return Math.max(...max)
