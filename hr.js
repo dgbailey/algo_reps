@@ -62,3 +62,29 @@ function minTime(machines, goal) {
     //8  4 4 2
 
 }
+
+// Complete the maximumSum function below.
+// check out this time complexity
+//it is failing
+function maximumSum(a, m,index = 0,value = 0,sumArr=[]) {
+    
+    let modulus = (a[index] + value) % m
+    let newValue = a[index] + value
+    if(modulus){
+        sumArr.push(modulus)
+    }
+    
+    if(index === a.length){
+        return
+    }
+
+    maximumSum(a,m, index +1,a[index],sumArr)
+    maximumSum(a,m, index +1,value,sumArr)
+
+//recursion?
+//O(n)
+    return Math.max(...sumArr)
+
+}
+
+console.log(maximumSum([3,3,9,9,5],7))
