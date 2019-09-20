@@ -62,3 +62,33 @@ function minTime(machines, goal) {
     //8  4 4 2
 
 }
+
+// Complete the maximumSum function below.
+// check out this time complexity
+//it is failing
+//credit for getting a functioning recursion tree, however does not have great time complexity
+function maximumSum(a, m,index = 0,value = 0,sumArr=[]) {
+    
+    let modulus = (a[index] + value) % m
+    let newValue = a[index] + value
+    if(modulus){
+        sumArr.push(newValue)
+    }
+    
+    if(index === a.length){
+        return
+    }
+    console.log(index,sumArr,value)
+    maximumSum(a,m, index +1,a[index],sumArr)
+    
+    maximumSum(a,m, index +1,a[index +1],sumArr)
+    
+
+
+//recursion?
+//O(n)
+    return sumArr
+
+}
+
+console.log(maximumSum([1,2,3],2))
