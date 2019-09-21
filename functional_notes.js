@@ -87,3 +87,28 @@ const pipe = (...funcs) => x => funcs.reduce((y,f) => f(y),x)
 const attempt = pipe(xTwo,trace('xTwo'),xOne,trace('xOne'))
 
 attempt(20)
+
+//12 rest and spread
+
+let mySpread = [1,2,3,4]
+let [first, ...rest] = mySpread
+console.log(rest)
+
+//13
+// const result = add(2)(3); // => 5
+/*The add function takes one argument, and then returns a partial application of itself with 'a' fixed
+in the closure scope. A closure is a function bundled with its lexical scope. Closures are created at
+runtime during function creation. Fixed means that the variables are assigned values in the closure’s
+bundled scope.*/
+
+/*(closures are created at function creation time
+— when add() is invoked), s*/
+
+//14
+/*The reason that curried functions are
+so convenient for function composition is that they transform functions which expect multiple
+parameters into functions which can take a single argument, allowing them to fit in a function
+composition pipeline*/
+
+//15) cool destructuring const words = {0: 'oops', 1: 'gasp', 2: 'shout', 3: 'sun', length: 4};
+// let { length } = words;
