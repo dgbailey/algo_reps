@@ -112,3 +112,8 @@ composition pipeline*/
 
 //15) cool destructuring const words = {0: 'oops', 1: 'gasp', 2: 'shout', 3: 'sun', length: 4};
 // let { length } = words;
+
+//16 
+/*1. A reducer called with no parameters should return its valid initial state.
+2. If the reducer isn’t going to handle the action type, it still needs to return the state.
+3. Redux reducers must be pure functions.*/
