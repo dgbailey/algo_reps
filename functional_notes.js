@@ -117,3 +117,56 @@ composition pipeline*/
 /*1. A reducer called with no parameters should return its valid initial state.
 2. If the reducer isn’t going to handle the action type, it still needs to return the state.
 3. Redux reducers must be pure functions.*/
+
+const ADD_VALUE = 'ADD_VALUE';
+
+ const summingReducer = (state = 0, action = {}) => {
+ const { type, payload } = action;
+
+ switch (type) {
+case ADD_VALUE:
+ return state + payload.value;
+default: return state;
+ } };
+
+ //17
+ /*const actions = [
+2 { type: 'ADD_VALUE', payload: { value: 1 } },
+3 { type: 'ADD_VALUE', payload: { value: 1 } },
+4 { type: 'ADD_VALUE', payload: { value: 1 } },
+5 ];
+6
+7 actions.reduce(summingReducer, 0); // 3
+That makes unit testing Redux-style reducers a breeze.*/
+
+//17) general reduceral internals
+
+const reduce = (reducer, initial, arr) => {
+    // shared stuff
+    let acc = initial;
+    for (let i = 0, { length } = arr; i < length; i++) {
+
+    // unique stuff in reducer call
+    acc = reducer(acc, arr[i]);
+    
+     // more shared stuff
+    }
+    return acc;
+    };
+    
+    reduce((acc, curr) => acc + curr, 0, [1,2,3]); // 
+
+    //18) More code = more surface area for bugs to hide in = more bugs.
+
+
+    //18) Delegation
+    /*JavaScript’s built-in types use delegation to forward built-in method calls up the prototype
+chain. e.g., [].map() delegates to Array.prototype.map(), obj.hasOwnProperty() delegates to
+// Object.prototype.hasOwnProperty() and so on.*/
+
+/*Conserve memory: Any time there may be potentially many instances of an object and it
+would be useful to share identical properties or methods among each instance which would
+otherwise require allocating more memory.
+2. Dynamically update many instances: Any time many instances of an object need to share
+identical state which may need to be updated dynamically and changes instantaneously
+reflected in every instance, e.g., Sketchpad’s “masters” or Photoshop’s “smart objects”.*/
