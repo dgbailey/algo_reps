@@ -92,6 +92,10 @@ attempt(20)
 
 let mySpread = [1,2,3,4]
 let [first, ...rest] = mySpread
+
+let myObj = {'a':2,'b':3,'c':4}
+
+const {a:first, ...rest} = myObj
 console.log(rest)
 
 //13
@@ -117,6 +121,11 @@ composition pipeline*/
 /*1. A reducer called with no parameters should return its valid initial state.
 2. If the reducer isn’t going to handle the action type, it still needs to return the state.
 3. Redux reducers must be pure functions.*/
+//switch(action){
+    //case:
+    //case:
+    //default:
+}
 
 const ADD_VALUE = 'ADD_VALUE';
 
@@ -170,3 +179,30 @@ otherwise require allocating more memory.
 2. Dynamically update many instances: Any time many instances of an object need to share
 identical state which may need to be updated dynamically and changes instantaneously
 reflected in every instance, e.g., Sketchpad’s “masters” or Photoshop’s “smart objects”.*/
+
+//19) Factory functions
+
+
+
+//20
+
+/*The most obvious difference is that constructors and class require the new keyword. But what
+does new actually do?
+• Creates a new object and binds this to it in the constructor function.
+• Implicitly returns this, unless you explicitly return another object.
+• Sets the instance [[Prototype]], instance.__proto__ to Constructor.prototype, so that
+Object.getPrototypeOf(instance) === Constructor.prototype and instance.__proto__-
+=== Constructor.prototype.
+• Sets the instance.constructor === Constructor.*/
+
+//21 No selective inheritance with class extends
+
+
+//22) Testing
+// npm init for package.json
+//npm install jest
+//yarn add jest
+
+//tomorrow
+//more on jest
+//more on @testing-library
