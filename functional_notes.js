@@ -92,6 +92,10 @@ attempt(20)
 
 let mySpread = [1,2,3,4]
 let [first, ...rest] = mySpread
+
+let myObj = {'a':2,'b':3,'c':4}
+
+const {a:first, ...rest} = myObj
 console.log(rest)
 
 //13
@@ -117,6 +121,11 @@ composition pipeline*/
 /*1. A reducer called with no parameters should return its valid initial state.
 2. If the reducer isn’t going to handle the action type, it still needs to return the state.
 3. Redux reducers must be pure functions.*/
+//switch(action){
+    //case:
+    //case:
+    //default:
+}
 
 const ADD_VALUE = 'ADD_VALUE';
 
@@ -191,4 +200,9 @@ Object.getPrototypeOf(instance) === Constructor.prototype and instance.__proto__
 
 //22) Testing
 // npm init for package.json
-//npx install jest
+//npm install jest
+//yarn add jest
+
+//tomorrow
+//more on jest
+//more on @testing-library
