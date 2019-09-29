@@ -197,12 +197,6 @@ Object.getPrototypeOf(instance) === Constructor.prototype and instance.__proto__
 
 //21 No selective inheritance with class extends
 
+//22 Defining a var vs declaring: creating a binding vs not creating a binding
 
-//22) Testing
-// npm init for package.json
-//npm install jest
-//yarn add jest
 
-//tomorrow
-//more on jest
-//more on @testing-library
