@@ -81,20 +81,29 @@ class minHeap{
            
             if(end){
 
-                if(firstChild === end || secondChild === end){
+                if(firstChild >= end || secondChild >= end){
 
                     return
                 }
                 else if(queue[firstChild] > queue[secondChild]){
-                    queue[parent] = queue[firstChild];
-                    queue[firstChild] = temp;
-                    
-                    this.trickleDown(queue,firstChild,end -1);
+                    console.log('beforegreat',queue)
+                    if(queue[firstChild] > queue[parent]){
+                        queue[parent] = queue[firstChild];
+                        queue[firstChild] = temp;
+                        console.log('aftergreat',queue)
+                    this.trickleDown(queue,firstChild,end);
+                    }
                 }
                 else if(queue[firstChild] <= queue[secondChild]){
-                    queue[parent] = queue[secondChild];
-                    queue[secondChild] = temp;
-                    this.trickleDown(queue,secondChild,end -1);
+                    console.log('beforeless',queue)
+                    if(queue[secondChild] > queue[parent]){
+
+                        queue[parent] = queue[secondChild];
+                        queue[secondChild] = temp;
+                        console.log('afterless',queue)
+                        this.trickleDown(queue,secondChild,end);
+                    }
+                 
                 
                 }
 
@@ -103,15 +112,22 @@ class minHeap{
             }
             else{
                 if(queue[firstChild] > queue[secondChild]){
-                    queue[parent] = queue[firstChild];
-                    queue[firstChild] = temp;
+                    if(queue[firstChild] > queue[parent]){
+                        queue[parent] = queue[firstChild];
+                        queue[firstChild] = temp;
                     
                     this.trickleDown(queue,firstChild);
+                    }
+                    
                 }
                 else if(queue[firstChild] <= queue[secondChild]){
-                    queue[parent] = queue[secondChild];
-                    queue[secondChild] = temp;
-                    this.trickleDown(queue,secondChild);
+                    if(queue[secondChild] > queue[parent]){
+
+                        queue[parent] = queue[secondChild];
+                        queue[secondChild] = temp;
+                        this.trickleDown(queue,secondChild);
+                    }
+                 
                 
                 }
             }
@@ -140,8 +156,10 @@ class minHeap{
         let length = this.queue.length;
         
         for(let i = length -1; i >= 0; i--){
-         
+
+            console.log('current heapify',this.queue)
             this.trickleDown(this.queue,this.calcParent(i));
+            
 
         }
 
@@ -152,15 +170,16 @@ class minHeap{
             
     heapSort(){
         
-        for(let i = this.queue.length -1; i > 0 ;i -- ){
+        for(let i = this.queue.length -1; i > 1 ;i -- ){
 
             let first = 0;
             let last = i;
             let temp = this.queue[first];
             this.queue[first] = this.queue[last];
-            this.queue[last] = this.queue[temp];
+            this.queue[last] = temp;
+           console.log('newCycle',this.queue)
 
-            this.trickleDown(this.queue,this.calcParent(i),i);
+            this.trickleDown(this.queue,first,i);
             
           
         }
@@ -193,13 +212,13 @@ let secmax = myHeap.extractMax();
 console.log(secmax);
 console.log(myHeap);
 
-let newQueue = [1,4,2,5,6,7,4,9,5]
+let newQueue = [1,-2,10,6,44,0,4,2,5,6,7,4,9,5]
 let newHeap = new minHeap();
 newHeap.queue = newQueue;
 
 console.log(newHeap.queue)
 newHeap.maxHeapify();
-console.log(newHeap.queue)
-// newHeap.heapSort();
-// console.log('sorted',newHeap.queue)
+console.log('max heaped',newHeap.queue)
+newHeap.heapSort();
+console.log('sorted',newHeap.queue)
 //do binary tree keys in order next
