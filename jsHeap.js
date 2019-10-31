@@ -82,7 +82,8 @@ class minHeap{
             if(end){
 
                 if(firstChild >= end || secondChild >= end){
-
+                    //this was the major issue
+                    //was checking to see if index for end of array was equal to instead of greater than or equal to the current children being assessed for trickle down.
                     return
                 }
                 else if(queue[firstChild] > queue[secondChild]){
@@ -171,7 +172,7 @@ class minHeap{
     heapSort(){
         
         for(let i = this.queue.length -1; i > 1 ;i -- ){
-
+            //had an off by one error here. i doesn't need to ever be less than 1
             let first = 0;
             let last = i;
             let temp = this.queue[first];
