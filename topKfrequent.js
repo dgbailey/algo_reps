@@ -4,6 +4,10 @@
  * @return {number[]}
  */
 
+
+ //try this again with heap
+ //or bucket sort
+
 class Node{
     constructor(key,value){
         this.key = key;
@@ -11,7 +15,7 @@ class Node{
     }
 }
 
-class BST{
+class Heap{
     constructor(root){
         this.root = root;
         this.size = 0;
