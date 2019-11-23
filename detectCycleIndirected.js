@@ -1,6 +1,12 @@
-//trying to detect a cycle in a directed graph
+//trying to detect a cycle in a supposedly acylic directed graph
 //When Array is called as a function rather than as a constructor, it creates and initialises a new Array object. Thus the function call Array(...) is equivalent to the object creation expression new Array(...) with the same arguments.
 
+// 1) In this solution we create somewhat of a topoligical sort.  Two sets are used for evaluating if we have encountered a cycle on our current
+//dfs exploration.  
+//2) The other is used to keep track of each origin we have already explored as to not repeat work.
+//3) Vertices are moved between these two data structures as we exhaust depth first explorations.
+//4) If we encounter a cycle (a dupe node already in visiting) we return false to the previous stack frame, which eventually bubbles up
+//to our initial loop starting on line 30.
 
 /**
  * @param {number} numCourses
