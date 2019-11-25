@@ -12,6 +12,7 @@
 
  //difficult part here was remembering to return the copy, remembering when to dfs (non visited nodes), that we didn't need a base case
  
+ //cloning an undirected graph
 var cloneGraph = function(node) {
     //some container for our node copies
     let visited = {};
