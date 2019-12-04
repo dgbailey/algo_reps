@@ -35,6 +35,7 @@ class Node{
 
         if(char in this.children){
             return this.children[char]
+
         }
         else{
             let node = new Node();
@@ -83,16 +84,17 @@ class Node{
         for(let char of queryArr){
             console.log(current.children,char);
             if(!char in current.children){
+                // TODO: for wildcard symbol '.'
+                    //if prefix or middle set current to one level down if exists 'ca.'
+                    //if suffix search if any children isWord, if not return false
+                    
                 return false
             }
 
             else if(char in current.children){
-                if(current.isWord){
-                    return true;
-                }
-                else{
+                
                     current = current.children[char];
-                }
+                
             }
         }
         return current.isWord;
