@@ -110,3 +110,84 @@ var deserialize = function(data) {
  * Your functions will be called as such:
  * deserialize(serialize(root));
  */
+
+ /**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+
+/**
+ * Encodes a tree to a single string.
+ *
+ * @param {TreeNode} root
+ * @return {string}
+ */
+var serialize = function(root) {
+    //df traversal
+    //special character when encountering null
+    //retuns string
+    
+    let serialized = '';
+    dfs(root);
+    return serialized;
+    
+    function dfs(root){
+        if(!root){
+            serialized+= 'e ';
+            return;
+        }
+       
+        serialized += `${root.val} `;
+        
+        
+        dfs(root.left);
+        dfs(root.right);
+      
+    }
+};
+
+/**
+ * Decodes your encoded data to tree.
+ *
+ * @param {string} data
+ * @return {TreeNode}
+ */
+var deserialize = function(data) {
+    let dataArr = data.split(' ');
+    console.log(dataArr)
+    let root = dfd();
+    console.log(root);
+    return root;
+    
+    
+   
+    
+    function dfd(){
+        //each value represents a new node
+        let value = dataArr.shift();
+        
+        
+        if(value === 'e'){
+            return null;
+        }
+        
+        
+        let node = new TreeNode(value);
+        
+        
+        node.left = dfd();
+        node.right = dfd();
+        
+        return node;
+        
+    }
+    
+};
+
+/**
+ * Your functions will be called as such:
+ * deserialize(serialize(root));
+ */

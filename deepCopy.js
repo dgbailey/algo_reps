@@ -1,30 +1,3 @@
-//you weren't associating existing vertex values in ref with new neighbor copies
-//dfs doesn't always require a stack
-
-var cloneGraph = function(node) {
-    if (!node) return node;
-    
-    const ref = {};
-    const copy = new Node(node.val, []);
-    
-    ref[node.val] = copy;
-    dfs(node, ref);
-    return copy;
-};
-
-var dfs = function(node, ref) {
-    for (neighbor of node.neighbors) {
-        if (!ref[neighbor.val]) {
-            const copy = new Node(neighbor.val, []);
-            ref[neighbor.val] = copy;
-            ref[node.val].neighbors.push(copy);
-            dfs(neighbor, ref)
-        } else {
-            ref[node.val].neighbors.push(ref[neighbor.val])
-        }
-    }
-}
-
 /**
  * // Definition for a Node.
  * function Node(val,neighbors) {
@@ -36,44 +9,49 @@ var dfs = function(node, ref) {
  * @param {Node} node
  * @return {Node}
  */
+
+ //difficult part here was remembering to return the copy, remembering when to dfs (non visited nodes), that we didn't need a base case
+ 
+ //cloning an undirected graph
 var cloneGraph = function(node) {
-    
-    if(!node){
-        return node;
-    }
-    
-    let refCopies = {};
+    //some container for our node copies
+    let visited = {};
     let copy = new Node(node.val,[]);
-    refCopies[copy.val] = copy;
-    deepHelper(node,refCopies);
+    visited[node.val] = copy;
+    dfs(node);
     return copy;
+    //traverse the graph
+     //for each vertex dfs on neighbors
+    //
+    function dfs(n){
+        //base case?
+   
+        
+        //iterate through neighbors
+        //if we have seen and copied neighbor 
+        //push that neighbor reference into the current vertex neighbor array
+        //no need to dfs in this case as we have already explored that neighbor
+        for(let v of n.neighbors){
+            if(v.val in visited){
+                visited[n.val].neighbors.push(visited[v.val]);
+                
+               
+            }
+            else{
+                let copy = new Node(v.val,[]);
+                visited[v.val] = copy;
+                //push neighbor into neighbors array of current node
+                visited[n.val].neighbors.push(copy);
+                //here dfs the unexplored vertex
+                dfs(v);
+                
+            }
+            
+            
+        }
+        
+    }
     
 
-    
-    function deepHelper(node,reference){
-        for(let n of node.neighbors){
-            if(!reference[n.val]){
-            
-                reference[n.val] = new Node(n.val,[]);
-            //add to ref
-            //create copy for neighbors
-            
-                
-                deepHelper(n,reference);
-            }
-        
-            //call deepHelp on new neighbor
-            
-        
-        else{
-            //add reference to current neighbors array
-            reference[node.val].neighbors.push(reference[n.val]);
-        }
-        }
-        
-    }
-        
-       
-    
     
 };

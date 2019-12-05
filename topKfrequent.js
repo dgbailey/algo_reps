@@ -4,105 +4,162 @@
  * @return {number[]}
  */
 
+//perhaps review with a bucket sort
+ //completed with heap. Not really fast or space efficient
 
- //try this again with heap
- //or bucket sort
+ //difficult to remember
+ //sifting down, accounting for changes in heap size and potential child indices, making sure comparions are in range
+ //making sure children equal in value are still compared with the parent node
 
+ 
 class Node{
-    constructor(key,value){
-        this.key = key;
-        this.value = value;
+    constructor(val,freq){
+        this.val = val;
+        this.freq = freq;
     }
 }
 
-class Heap{
-    constructor(root){
-        this.root = root;
+class MaxHeap{
+    constructor(){
+        this.arr = [];
         this.size = 0;
     }
     
+    //bubble up
     bubbleUp(index){
         let parent = Math.ceil(index/2 - 1);
-        let child = index;
-        if(this.storage[parent].value < this.storage[child].value){
-            let temp = this.storage[parent];
-            this.storage[parent] = this.storage[child];
-            this.storage[child] = temp;
-            
-            bubbleUp(parent);
+        if(this.arr[parent]){
+            if(this.arr[index].freq > this.arr[parent].freq){
+            let temp = this.arr[parent];
+            this.arr[parent] = this.arr[index];
+            this.arr[index] = temp;
+            this.bubbleUp(parent);
+            }
         }
-   
+        
+        //[1,2,3,4,5]
+    }
+    
+    //insert
+        //bubble up
+    insert(node){
+        this.arr.push(node);
+        this.size++;
+        this.bubbleUp(this.size -1);
         
     }
+        //increment size
     
-    insert(node){
-        this.storage.push(node);
-        //bubble up
+    //delete
+      //swap root with last
+        //sift down?
+        //decrement size
+        //return first
+    delete(){
+        let temp = this.arr[0];
+        this.arr[0] = this.arr[this.size -1];
+        this.arr[this.size -1] = temp;
+        this.size--;
+        this.siftDown(0);
+   
+        // return parseInt(temp.val);
     }
-}
-var topKFrequent = function(nums, k) {
-    //standard sorting is out
     
-    //hash map -- not clear approach
-        //read in values
-        //on collision update frequency
-        //read frequencies into a BST
-        //return bst root, root.right, root.right.right
-    
-    //read key values into a max heap -- would end up being nlogn
-        //hashmap
-        //max heap
-        //delete max twice
-        //return max
-    
-    //linear sort of keys by frequency
-        //for key in Object.keys(hash)
-        //BST approach also nlogn at best
-    
-    //what if we have ties?
-    //store key values in an array based on frequency%arraysize (9)
-    
-
-    let hash = {};
-    
-    //read values and frequencies into hash
-    for(let i = 0; i < nums.length; i++){
-        if(nums[i] in hash){
-            hash[nums[i]]++;
+    //siftdown
+    siftDown(index){
+        let child1 = index*2 + 1;
+        let child2 = index*2 + 2;
+        if(child1 < this.size && child2 < this.size){
+             if(this.arr[child1].freq >= this.arr[child2].freq  ){
+            if(this.arr[child1].freq > this.arr[index].freq){
+                let temp = this.arr[index];
+                this.arr[index] = this.arr[child1];
+                this.arr[child1] = temp;
+                this.siftDown(child1);
+            }
+        }
+        
+            if(this.arr[child2].freq > this.arr[child1].freq){
+            if(this.arr[child2].freq > this.arr[index].freq){
+                let temp = this.arr[index];
+                this.arr[index] = this.arr[child2];
+                this.arr[child2] = temp;
+                this.siftDown(child2);
+                }
+            }
         }
         else{
-            hash[nums[i]] = 1;
+            if(child1 < this.size){
+                  if(this.arr[child1].freq > this.arr[index].freq){
+                let temp = this.arr[index];
+                this.arr[index] = this.arr[child1];
+                this.arr[child1] = temp;
+                this.siftDown(child1);
+            }
+            }
+            else{
+                  if(child2 < this.size){
+                      if(this.arr[child2].freq > this.arr[index].freq){
+                          let temp = this.arr[index];
+                            this.arr[index] = this.arr[child2];
+                            this.arr[child2] = temp;
+                            this.siftDown(child2);
+                      }
+                
+            }
+            }
         }
-    }
-   
-    let keys = Object.keys(hash);
-    console.log(hash)
-    let final =  Array.from(Array(9),() => 0);
-    for(let j = 0; j < keys.length; j++){
-        let index = hash[keys[j]] % final.length;
-        console.log(index)
-        final[index] = keys[j];
-    }
-    console.log('p',final)
-    
-    let output = [];
-    let end = 0;
-    console.log('final',final)
-    for(let l = final.length -1; l >= 0; l--){
-        if(end < k){
-             if (final[l] !== 0){
-            output.push(parseInt(final[l]));
-            end++
         
+    };
+      
+};
+
+
+var topKFrequent = function(nums, k) {
+    //frequencies in a hash table
+    
+    let hash = {};
+    for(let n of nums){
+        if(n in hash){
+            hash[n]++;
         }
-       
+        else{
+            hash[n] = 1;
+        }
     }
+    
+    let mH = new MaxHeap();
+    for(let key of Object.keys(hash)){
+        let n = new Node(key,hash[key]);
+        mH.insert(n);
     }
     
+    let results = [];
     
-  return output;
-    
+    for(let i = 0; i < k; i ++){
+        
+        let max = parseInt(mH.arr[0].val);
+        results.push(max);
+        mH.delete();
+         console.log(mH)
+    }
    
+
+    return results;
+   
+    //how do we determine k most frequent from hash table?
+    //could I store them in an array?
+    //frequency hashmap
+    //key:freq
+    
+    //insert key:freq Node into maxheap
+    //m(length of unique keys)
+    //m(unique nodes in BT) 
+    //insertion here mlog(m) will be quicker than nlog(n) in each case unless you have one of each node
+    
+    //k deletions from max heap (klog(m))
+    //
+    
     
     
 };
