@@ -194,7 +194,7 @@ const tableMaker = function(query){
     return myArr
 }
 
-console.log(tableMaker('abcdeabfabc'));
+
 
 const kmp = function(text, query){
 
@@ -238,14 +238,28 @@ const kmp = function(text, query){
 
 }
 
+
+
 console.time('highlight2')
-let highlightDOS = highlight2('ababcabcabababd','ababd');//O(nm)
+let highlightDOS = highlight2('fig configurefigma fig configurefigma ','fig');//O(nm)
 console.timeEnd('highlight2');
 
 console.time('linearkmp')
-let linearKMP = kmp('ababcabcabababd','ababd');//O(n + m)
+let linearKMP = kmp('fig configurefigma fig configurefigma','fig');//O(n + m)
 console.timeEnd('linearkmp');
 
-
+//t1
 // highlight2: 0.888ms
 // linearkmp: 0.381ms
+
+//t2
+//highlight2: 0.411ms
+// linearkmp: 0.388ms
+
+//t3
+// highlight2: 0.410ms
+// linearkmp: 0.430ms
+
+//t4
+// highlight2: 0.507ms
+// linearkmp: 0.376ms
