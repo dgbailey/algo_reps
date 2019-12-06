@@ -13,6 +13,9 @@
 
  //big differences in this version of KMP compared to figmaProblem optimization
  //specifically in search algorithm, detemining when we have a one valid match vs. looking for multiple matches
+ // Also very specific serialization issues when dealing with single roots of BT that contain val 12 vs 2. 
+ //These get serialized as '12ee' and '2ee' respectively resulting in false positives for KMP substring search
+ //quotations are needed during serialization to distinguish between "12" e e and "2" e e
 var isSubtree = function(s, t) {
     
     //serialize s & t
