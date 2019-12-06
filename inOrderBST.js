@@ -21,6 +21,11 @@ var kthSmallest = function(root, k) {
     //in order traversal of BST gives us elements in ascending order
 
     //**struggled with a dfs inorder traversal of this tree. Was trying this later in the day */
+    /*
+    
+    https://www.quora.com/How-did-preorder-inorder-and-postorder-binary-tree-traversals-get-their-names
+    
+    */
 
     //1 2 null 3 4 5 6
     //1 2 3 4
