@@ -166,7 +166,7 @@ const highlight2 = function(text,query){
 //this table directs you to the appropriate index of your query so you can continue to move your pointer in text(n) forward
 
 //one pass through string looking for mattern matches (m)
-
+//('41ee2ee'))
 const tableMaker = function(query){
 
     let pointer = 0;
@@ -263,3 +263,5 @@ console.timeEnd('linearkmp');
 //t4
 // highlight2: 0.507ms
 // linearkmp: 0.376ms
+
+console.log(tableMaker('1ee'))
