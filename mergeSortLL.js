@@ -26,6 +26,7 @@ const mergeSort = function(head){
     
     //getting the middle of a linked list can be achieved with a turtle and hare approach
     //recursive
+    //!head and head.next is key to proper recursice base case
     if(!head || !head.next){
         return head;//could return null
     }
