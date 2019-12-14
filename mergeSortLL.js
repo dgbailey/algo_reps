@@ -92,3 +92,5 @@ function merge(a,b){
 // }
 
 // console.log(myLinkedList)
+
+//delete from bst and bt
