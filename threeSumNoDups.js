@@ -14,6 +14,10 @@ var threeSum = function(nums) {
         let k = nums.length -1;
        
           // [-1,-1,-1,-1,2,2]
+          //for each match we need to find the next unique value for each pointer? and i in order to calculate next window for inspection
+          //the important thing to remember here is that whenever we match with zero, any increase in j necessitates a decease in k.  This
+          //is due to the fact that our array is presorted.
+          //
              while(j < k){
                  
                 if(nums[i] + nums[j] + nums[k] === 0){
